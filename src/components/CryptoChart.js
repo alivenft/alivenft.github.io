@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 
@@ -12,6 +12,21 @@ const intervals = {
 };
 
 const CryptoChart = ({ data, interval, setInterval }) => {
+  const chartRef = useRef(null);
+
+  useEffect(() => {
+    if (chartRef.current) {
+      const chart = chartRef.current;
+      const ctx = chart.ctx;
+      const gradient = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
+      gradient.addColorStop(0, 'rgba(255, 140, 0, 0.15)'); // Light orange
+      gradient.addColorStop(1, 'rgba(255, 140, 0, 0.05)'); // More transparent orange
+
+      chart.data.datasets[0].backgroundColor = gradient;
+      chart.update();
+    }
+  }, [data]);
+
   const chartData = {
     labels: data.map(point => new Date(point[0]).toLocaleString()),
     datasets: [
@@ -19,11 +34,11 @@ const CryptoChart = ({ data, interval, setInterval }) => {
         label: 'Price (USD)',
         data: data.map(point => point[1]),
         fill: true,
-        backgroundColor: 'rgba(184, 0, 0, 0.2)', // Red gradient start
-        borderColor: 'rgba(184, 0, 0, 1)', // Red color
+        backgroundColor: 'rgba(255, 140, 0, 0.15)', // This will be overridden by the gradient
+        borderColor: 'rgba(255, 140, 0, 1)', // Orange color
         pointBackgroundColor: '#fff',
-        pointBorderColor: 'rgba(184, 0, 0, 1)', // Red color
-        pointHoverBackgroundColor: 'rgba(184, 0, 0, 1)', // Red color
+        pointBorderColor: 'rgba(255, 140, 0, 1)', // Orange color
+        pointHoverBackgroundColor: 'rgba(255, 140, 0, 1)', // Orange color
         pointHoverBorderColor: '#fff',
         pointRadius: 3,
         pointHoverRadius: 5,
@@ -90,7 +105,7 @@ const CryptoChart = ({ data, interval, setInterval }) => {
 
   return (
     <div className="chart-container mt-5">
-      <div className="btn-group-chart" role="group">
+      <div className="btn-group btn-group-chart" role="group">
         {Object.keys(intervals).map(key => (
           <button 
             key={key} 
@@ -101,9 +116,9 @@ const CryptoChart = ({ data, interval, setInterval }) => {
             {key}
           </button>
         ))}
-      </div>a
+      </div>
       <div className="chart-wrapper">
-        <Line data={chartData} options={chartOptions} />
+        <Line ref={chartRef} data={chartData} options={chartOptions} />
       </div>
     </div>
   );
