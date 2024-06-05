@@ -1,7 +1,7 @@
 import React from 'react';
 import btcLogo from './btc-logo.png';
 import bitcointalkLogo from './bitcointalk.png';
-import githubLogo from './github.png'; // Import the GitHub logo image
+import githubLogo from './github.png';
 
 const Header = () => {
   return (
@@ -9,10 +9,10 @@ const Header = () => {
       <div className="container">
         <a className="navbar-brand d-flex align-items-center" href="/">
           <img src={btcLogo} alt="BTC Logo" width="30" height="30" className="me-2" />
-          <span className="fs-4">BTC Price Tracker</span>
+          <span className="fs-4" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 600 }}>Crypto Price Tracker</span>
         </a>
         <button
-          className="navbar-toggler custom-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"

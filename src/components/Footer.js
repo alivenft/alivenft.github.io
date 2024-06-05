@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="footer mt-auto py-3">
       <div className="container text-center">
-        <span className="text-muted">&copy; 2024 BTC Tracker. All rights reserved.</span>
+        <span className="text-muted">&copy; 2024 Crypto Tracker. All rights reserved.</span>
       </div>
     </footer>
   );

@@ -2,27 +2,31 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 
-const CryptoChart = ({ data }) => {
+const intervals = {
+  '1h': 'm1',
+  '24h': 'h1',
+  '7d': 'd1',
+  '1m': 'd1',
+  '3m': 'd1',
+  '1y': 'd1',
+};
+
+const CryptoChart = ({ data, interval, setInterval }) => {
   const chartData = {
     labels: data.map(point => new Date(point[0]).toLocaleString()),
     datasets: [
       {
-        label: 'Bitcoin Price (USD)',
+        label: 'Price (USD)',
         data: data.map(point => point[1]),
         fill: true,
-        backgroundColor: (context) => {
-          const gradient = context.chart.ctx.createLinearGradient(0, 0, 0, context.chart.height);
-          gradient.addColorStop(0, 'rgba(255, 171, 0, 0.5)');
-          gradient.addColorStop(1, 'rgba(255, 171, 0, 0)');
-          return gradient;
-        },
-        borderColor: '#ffab00',
+        backgroundColor: 'rgba(184, 0, 0, 0.2)', // Red gradient start
+        borderColor: 'rgba(184, 0, 0, 1)', // Red color
         pointBackgroundColor: '#fff',
-        pointBorderColor: '#ffab00',
-        pointHoverBackgroundColor: '#ffab00',
+        pointBorderColor: 'rgba(184, 0, 0, 1)', // Red color
+        pointHoverBackgroundColor: 'rgba(184, 0, 0, 1)', // Red color
         pointHoverBorderColor: '#fff',
         pointRadius: 3,
-        pointHoverRadius: 1,
+        pointHoverRadius: 5,
         tension: 0.6,
       },
     ],
@@ -34,33 +38,33 @@ const CryptoChart = ({ data }) => {
     scales: {
       x: {
         ticks: {
-          color: '#ffab00',
+          color: '#e0e0e0', // Light grey color
         },
         grid: {
-          color: 'rgba(255, 171, 0, 0.2)',
+          color: 'rgba(224, 224, 224, 0.2)', // Light grey color
         },
       },
       y: {
         ticks: {
-          color: '#ffab00',
+          color: '#e0e0e0', // Light grey color
         },
         grid: {
-          color: 'rgba(255, 171, 0, 0.2)',
+          color: 'rgba(224, 224, 224, 0.2)', // Light grey color
         },
       },
     },
     plugins: {
       legend: {
         labels: {
-          color: '#ffab00',
+          color: '#e0e0e0', // Light grey color
         },
       },
       tooltip: {
         enabled: true,
         backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        titleColor: '#ffab00',
-        bodyColor: '#fff',
-        footerColor: '#ffab00',
+        titleColor: '#e0e0e0', // Light grey color
+        bodyColor: '#e0e0e0', // Light grey color
+        footerColor: '#e0e0e0', // Light grey color
         callbacks: {
           label: function (context) {
             return `Price: $${context.raw.toFixed(2)}`;
@@ -69,9 +73,9 @@ const CryptoChart = ({ data }) => {
       },
       subtitle: {
         display: true,
-        color: '#ffab00',
+        color: '#e0e0e0', // Light grey color
         font: {
-          size: 6,
+          size: 12,
         },
         padding: {
           bottom: 1,
@@ -85,8 +89,22 @@ const CryptoChart = ({ data }) => {
   };
 
   return (
-    <div className="chart-container mt-5" style={{ position: 'relative', height: '500px', width: '100%' }}>
-      <Line data={chartData} options={chartOptions} />
+    <div className="chart-container mt-5">
+      <div className="btn-group-chart" role="group">
+        {Object.keys(intervals).map(key => (
+          <button 
+            key={key} 
+            onClick={() => setInterval(key)} 
+            type="button"
+            className={`btn btn-rounded btn-interval ${interval === key ? 'active' : ''}`}
+          >
+            {key}
+          </button>
+        ))}
+      </div>a
+      <div className="chart-wrapper">
+        <Line data={chartData} options={chartOptions} />
+      </div>
     </div>
   );
 };
