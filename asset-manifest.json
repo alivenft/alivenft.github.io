@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.25c806e4.css",
-    "main.js": "/static/js/main.2b8293eb.js",
+    "main.css": "/static/css/main.07b7298b.css",
+    "main.js": "/static/js/main.bbafc891.js",
+    "static/media/btc-logo.png": "/static/media/btc-logo.82491fef997ab841639c.png",
     "index.html": "/index.html",
-    "main.25c806e4.css.map": "/static/css/main.25c806e4.css.map",
-    "main.2b8293eb.js.map": "/static/js/main.2b8293eb.js.map"
+    "main.07b7298b.css.map": "/static/css/main.07b7298b.css.map",
+    "main.bbafc891.js.map": "/static/js/main.bbafc891.js.map"
   },
   "entrypoints": [
-    "static/css/main.25c806e4.css",
-    "static/js/main.2b8293eb.js"
+    "static/css/main.07b7298b.css",
+    "static/js/main.bbafc891.js"
   ]
 }
