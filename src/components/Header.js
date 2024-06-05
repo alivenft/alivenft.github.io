@@ -38,7 +38,7 @@ const Header = () => {
             <li className="nav-item">
               <a
                 className="nav-link"
-                href="https://bitcointalk.org/index.php?action=profile;u=3383579"
+                href="https://bitcointalk.org/index.php?topic=5498975.msg64173789#msg64173789"
                 target="_blank"
                 rel="noopener noreferrer"
               >
