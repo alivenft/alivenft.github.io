@@ -1,14 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.07b7298b.css",
-    "main.js": "/static/js/main.bbafc891.js",
+    "main.css": "/static/css/main.822caad3.css",
+    "main.js": "/static/js/main.d864e7c6.js",
+    "static/media/bitcointalk.png": "/static/media/bitcointalk.8c4c65303e2f282f36fe.png",
     "static/media/btc-logo.png": "/static/media/btc-logo.82491fef997ab841639c.png",
+    "static/media/github.png": "/static/media/github.f85f62e3d85ac9628065.png",
     "index.html": "/index.html",
-    "main.07b7298b.css.map": "/static/css/main.07b7298b.css.map",
-    "main.bbafc891.js.map": "/static/js/main.bbafc891.js.map"
+    "main.822caad3.css.map": "/static/css/main.822caad3.css.map",
+    "main.d864e7c6.js.map": "/static/js/main.d864e7c6.js.map"
   },
   "entrypoints": [
-    "static/css/main.07b7298b.css",
-    "static/js/main.bbafc891.js"
+    "static/css/main.822caad3.css",
+    "static/js/main.d864e7c6.js"
   ]
 }
