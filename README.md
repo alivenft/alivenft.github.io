@@ -1,4 +1,3 @@
-cat <<EOF > README.md
 # BTC Price Tracker
 
 This is a simple web application that tracks the live price of Bitcoin (BTC). It displays the current price and percentage change over the last 24 hours.
