@@ -12,13 +12,12 @@ const LiveBTCPrice = () => {
       try {
         const response = await axios.get('https://api.coincap.io/v2/assets/bitcoin');
         const newPrice = parseFloat(response.data.data.priceUsd);
+        const newPriceChangePercentage = parseFloat(response.data.data.changePercent24Hr);
+        console.log('Fetched BTC Price:', newPrice, '24hr Change:', newPriceChangePercentage);
 
         if (initialPrice === null) {
           setInitialPrice(newPrice);
         }
-
-        const newPriceChangePercentage =
-          initialPrice !== null ? ((newPrice - initialPrice) / initialPrice) * 100 : null;
 
         setPrice(newPrice);
         setPriceChangePercentage(newPriceChangePercentage);
@@ -37,14 +36,20 @@ const LiveBTCPrice = () => {
   }, [initialPrice]);
 
   return (
-    <div className="live-price-container text-center p-4 rounded-lg shadow-lg" style={{ color }}>
-      <h2>Live BTC Price</h2>
-      <p className="display-4">${price ? price.toFixed(2) : 'Loading...'}</p>
-      {priceChangePercentage !== null && (
-        <p>
-          {priceChangePercentage > 0 ? '▲' : '▼'} ({priceChangePercentage.toFixed(2)}%)
-        </p>
-      )}
+    <div className="container mt-4">
+      <div className="row justify-content-center">
+        <div className="col-md-6 d-flex justify-content-center align-items-center">
+          <div className="info-container text-center p-4 m-2 rounded-lg shadow-lg" style={{ color, width: '100%' }}>
+            <h2 className="mb-3">Live BTC Price</h2>
+            <p className="display-4">${price !== null ? price.toFixed(2) : 'Loading...'}</p>
+            {priceChangePercentage !== null && (
+              <p className="mb-0">
+                {priceChangePercentage > 0 ? '▲' : '▼'} ({priceChangePercentage.toFixed(2)}%)
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

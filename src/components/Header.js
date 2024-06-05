@@ -1,34 +1,53 @@
 import React from 'react';
-import { FaGithub } from 'react-icons/fa';
-import btcLogo from './btc-logo.png'; // Ensure you have a BTC logo image in your project
+import btcLogo from './btc-logo.png';
+import bitcointalkLogo from './bitcointalk.png';
+import githubLogo from './github.png'; // Import the GitHub logo image
 
 const Header = () => {
   return (
-    <header className="navbar navbar-expand-lg navbar-dark">
-      <a className="navbar-brand" href="#">
-        <img src={btcLogo} alt="BTC Logo" width="30" height="30" />
-        BTC Tracker
-      </a>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav ml-auto">
-          <li className="nav-item">
-            <a className="nav-link" href="#">Home</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">About</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">Contact</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="https://github.com/your-repo" target="_blank" rel="noopener noreferrer">
-              <FaGithub size="1.5em" />
-            </a>
-          </li>
-        </ul>
+    <header className="navbar navbar-expand-lg navbar-dark bg-dark py-3 shadow-sm">
+      <div className="container">
+        <a className="navbar-brand d-flex align-items-center" href="/">
+          <img src={btcLogo} alt="BTC Logo" width="30" height="30" className="me-2" />
+          <span className="fs-4">BTC Price Tracker</span>
+        </a>
+        <button
+          className="navbar-toggler custom-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto">
+            <li className="nav-item">
+              <a
+                className="nav-link"
+                href="https://github.com/alivenft/alivenft.github.io"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={githubLogo} alt="GitHub Logo" width="30" height="30" />
+                <span className="ms-1">GitHub</span>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className="nav-link"
+                href="https://bitcointalk.org/index.php?action=profile;u=3383579"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={bitcointalkLogo} alt="Bitcointalk Logo" width="30" height="30" />
+                <span className="ms-1">Bitcointalk</span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </header>
   );
