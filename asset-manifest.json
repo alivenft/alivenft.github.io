@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/alivenft.github.io/static/css/main.25c806e4.css",
-    "main.js": "/alivenft.github.io/static/js/main.8747d23e.js",
-    "index.html": "/alivenft.github.io/index.html",
-    "main.25c806e4.css.map": "/alivenft.github.io/static/css/main.25c806e4.css.map",
-    "main.8747d23e.js.map": "/alivenft.github.io/static/js/main.8747d23e.js.map"
+    "main.css": "/static/css/main.25c806e4.css",
+    "main.js": "/static/js/main.2b8293eb.js",
+    "index.html": "/index.html",
+    "main.25c806e4.css.map": "/static/css/main.25c806e4.css.map",
+    "main.2b8293eb.js.map": "/static/js/main.2b8293eb.js.map"
   },
   "entrypoints": [
     "static/css/main.25c806e4.css",
-    "static/js/main.8747d23e.js"
+    "static/js/main.2b8293eb.js"
   ]
 }
