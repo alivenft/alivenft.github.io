@@ -1,0 +1,59 @@
+.bitcoin-price-tracker-container {
+  text-align: center;
+  background-color: transparent;
+  color: #61dafb;
+  padding: 20px;
+}
+
+.text-hackerGreen {
+  color: #61dafb;
+}
+
+.font-pixel {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5rem;
+}
+
+.chart-container {
+  width: 1000px;
+  height: 500px; /* Increased the height for a bigger chart */
+  max-width: 100%; /* Increased the max-width */
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #61dafb;
+  border-radius: 10px;
+  background-color: #20232a;
+  box-shadow: 0 0 20px #61dafb;
+}
+
+.live-price {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.interval-buttons {
+  margin-bottom: 20px;
+}
+
+.interval-buttons button {
+  margin: 0 5px;
+  padding: 8px 16px; /* Smaller buttons */
+  border: none;
+  background-color: #61dafb;
+  color: #20232a;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+  font-size: 0.8rem; /* Smaller font size */
+  border-radius: 5px; /* Added border radius */
+}
+
+.interval-buttons button:hover {
+  background-color: #08b9ff;
+  transform: scale(1.1); /* Scale effect on hover */
+  box-shadow: 0 0 10px #000000; /* Added shadow effect */
+}
+
+.interval-buttons button.active {
+  background-color: #41a1da;
+  color: #fff;
+}
