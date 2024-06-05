@@ -2,16 +2,16 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 
-const CryptoChart = ({ data, interval }) => {
+const CryptoChart = ({ data }) => {
   const chartData = {
-    labels: data.map((point) => new Date(point[0]).toLocaleString()),
+    labels: data.map(point => new Date(point[0]).toLocaleString()),
     datasets: [
       {
         label: 'Bitcoin Price (USD)',
-        data: data.map((point) => point[1]),
+        data: data.map(point => point[1]),
         fill: false,
-        backgroundColor: '#61dafb',
-        borderColor: '#61dafb',
+        backgroundColor: '#ffab00',
+        borderColor: '#ffab00',
         tension: 0.1,
       },
     ],
@@ -23,25 +23,25 @@ const CryptoChart = ({ data, interval }) => {
     scales: {
       x: {
         ticks: {
-          color: '#61dafb',
+          color: '#ffab00',
         },
         grid: {
-          color: '#61dafb',
+          color: '#ffab00',
         },
       },
       y: {
         ticks: {
-          color: '#61dafb',
+          color: '#ffab00',
         },
         grid: {
-          color: '#61dafb',
+          color: '#ffab00',
         },
       },
     },
     plugins: {
       legend: {
         labels: {
-          color: '#61dafb',
+          color: '#ffab00',
         },
       },
       tooltip: {
@@ -55,7 +55,7 @@ const CryptoChart = ({ data, interval }) => {
   };
 
   return (
-    <div className="chart-container">
+    <div className="chart-container mt-5">
       <Line data={chartData} options={chartOptions} />
     </div>
   );

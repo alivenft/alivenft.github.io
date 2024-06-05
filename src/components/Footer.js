@@ -1,22 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
 
 const Footer = () => {
   return (
-    <FooterContainer>
-      <p>&copy; 2024 Track BTC Price</p>
-    </FooterContainer>
+    <footer className="footer mt-auto py-3">
+      <div className="container text-center">
+        <span className="text-muted">&copy; 2024 BTC Tracker. All rights reserved.</span>
+      </div>
+    </footer>
   );
 };
-
-const FooterContainer = styled.footer`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 20px;
-  text-align: center;
-  background-color: #282c34;
-  color: #61dafb;
-`;
 
 export default Footer;

@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CryptoChart from './CryptoChart';
 import LiveBTCPrice from './LiveBTCPrice';
-import './CryptoPriceTracker.css';
 
 const intervals = {
-  '1h': 'm1', // New interval for 1 hour
+  '1h': 'm1',
   '24h': 'h1',
   '7d': 'd1',
   '1m': 'd1',
@@ -15,7 +14,7 @@ const intervals = {
 
 const BitcoinPriceTracker = () => {
   const [bitcoinData, setBitcoinData] = useState([]);
-  const [interval, setInterval] = useState('1h'); // Default interval to 1 hour
+  const [interval, setInterval] = useState('1h');
 
   useEffect(() => {
     const fetchBitcoinData = async () => {
@@ -25,7 +24,7 @@ const BitcoinPriceTracker = () => {
           interval === '1m' ? Date.now() - 30 * 24 * 60 * 60 * 1000 : 
           interval === '7d' ? Date.now() - 7 * 24 * 60 * 60 * 1000 : 
           interval === '24h' ? Date.now() - 24 * 60 * 60 * 1000 : 
-          Date.now() - 60 * 60 * 1000; // 1 hour in milliseconds
+          Date.now() - 60 * 60 * 1000;
 
         const response = await axios.get(
           'https://api.coincap.io/v2/assets/bitcoin/history',
@@ -37,7 +36,7 @@ const BitcoinPriceTracker = () => {
             },
           }
         );
-        const formattedData = response.data.data.map((point) => [new Date(point.time).getTime(), parseFloat(point.priceUsd)]);
+        const formattedData = response.data.data.map(point => [new Date(point.time).getTime(), parseFloat(point.priceUsd)]);
         setBitcoinData(formattedData);
       } catch (error) {
         console.error('Error fetching Bitcoin data:', error);
@@ -48,16 +47,20 @@ const BitcoinPriceTracker = () => {
   }, [interval]);
 
   return (
-    <div className="bitcoin-price-tracker-container">
+    <div className="container text-center my-5">
       <LiveBTCPrice />
-      <div className="interval-buttons">
-        {Object.keys(intervals).map((key) => (
-          <button key={key} onClick={() => setInterval(key)} className={interval === key ? 'active' : ''}>
+      <div className="btn-group mt-4" role="group">
+        {Object.keys(intervals).map(key => (
+          <button 
+            key={key} 
+            onClick={() => setInterval(key)} 
+            className={`btn btn-${interval === key ? 'primary' : 'secondary'}`}
+          >
             {key}
           </button>
         ))}
       </div>
-      <CryptoChart data={bitcoinData} interval={interval} />
+      <CryptoChart data={bitcoinData} />
     </div>
   );
 };
