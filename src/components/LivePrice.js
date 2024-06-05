@@ -5,6 +5,7 @@ const LivePrice = ({ crypto }) => {
   const [price, setPrice] = useState(null);
   const [priceChangePercentage, setPriceChangePercentage] = useState(null);
   const [color, setColor] = useState(localStorage.getItem(`${crypto}PriceColor`) || '#39FF14');
+  const [priceClass, setPriceClass] = useState('');
 
   useEffect(() => {
     const fetchPrice = async () => {
@@ -13,12 +14,22 @@ const LivePrice = ({ crypto }) => {
         const newPrice = parseFloat(response.data.data.priceUsd);
         const newPriceChangePercentage = parseFloat(response.data.data.changePercent24Hr);
 
+        if (price !== null && newPrice !== price) {
+          const newColor = newPriceChangePercentage > 0 ? '#39FF14' : '#FF0000';
+          setColor(newColor);
+          localStorage.setItem(`${crypto}PriceColor`, newColor);
+
+          // Trigger animation class
+          setPriceClass(newPrice > price ? 'price-change-up' : 'price-change-down');
+
+          // Remove animation class after 1 second
+          setTimeout(() => {
+            setPriceClass('');
+          }, 1000);
+        }
+
         setPrice(newPrice);
         setPriceChangePercentage(newPriceChangePercentage);
-
-        const newColor = newPriceChangePercentage > 0 ? '#39FF14' : '#FF0000';
-        setColor(newColor);
-        localStorage.setItem(`${crypto}PriceColor`, newColor);
       } catch (error) {
         console.error('Error fetching live price:', error);
       }
@@ -28,13 +39,16 @@ const LivePrice = ({ crypto }) => {
     const interval = setInterval(fetchPrice, 10000);
 
     return () => clearInterval(interval);
-  }, [crypto]);
+  }, [crypto, price]);
 
   return (
     <div className="container mt-4">
       <div className="row justify-content-center">
         <div className="col-md-5 d-flex justify-content-center align-items-center">
-          <div className="info-container text-center p-4 m-1" style={{ color, width: '100%', borderRadius: '10px', backgroundColor: '#1e2025' }}>
+          <div
+            className={`info-container text-center p-4 m-1 ${priceClass}`}
+            style={{ color, width: '100%', borderRadius: '10px', backgroundColor: '#1e2025' }}
+          >
             <h2 className="mb-1">{crypto.toUpperCase()}</h2>
             <p className="display-6">${price !== null ? price.toFixed(2) : 'Loading...'}</p>
             {priceChangePercentage !== null && (

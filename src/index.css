@@ -109,3 +109,23 @@ footer .text-muted {
     padding: 6px 2px; /* Reduced padding for smaller screens */
   }
 }
+
+/* Add this to your CSS file */
+
+@keyframes priceChangeUp {
+  0% { transform: translateY(-10px); background-color: #39FF14; }
+  100% { transform: translateY(0); background-color: #1e2025; }
+}
+
+@keyframes priceChangeDown {
+  0% { transform: translateY(10px); background-color: #FF0000; }
+  100% { transform: translateY(0); background-color: #1e2025; }
+}
+
+.price-change-up {
+  animation: priceChangeUp 1s ease;
+}
+
+.price-change-down {
+  animation: priceChangeDown 1s ease;
+}
