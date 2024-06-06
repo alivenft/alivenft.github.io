@@ -3,10 +3,7 @@ import axios from 'axios';
 import CryptoChart from './CryptoChart';
 import LivePrice from './LivePrice';
 import Loading from './Loading';
-import bitcoinIcon from './btc.svg';
-import ethereumIcon from './eth.svg';
-import dogecoinIcon from './doge.svg';
-import litecoinIcon from './ltc.svg';
+import { FaSearch, FaCaretDown } from 'react-icons/fa';
 
 const intervals = {
   '1h': 'm1',
@@ -22,6 +19,22 @@ const BitcoinPriceTracker = () => {
   const [interval, setInterval] = useState('1h');
   const [crypto, setCrypto] = useState('bitcoin');
   const [loading, setLoading] = useState(true);
+  const [cryptoList, setCryptoList] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [showWarning, setShowWarning] = useState(false);
+
+  useEffect(() => {
+    const fetchCryptoList = async () => {
+      try {
+        const response = await axios.get('https://api.coincap.io/v2/assets');
+        setCryptoList(response.data.data);
+      } catch (error) {
+        console.error('Error fetching crypto list:', error);
+      }
+    };
+
+    fetchCryptoList();
+  }, []);
 
   useEffect(() => {
     const fetchCryptoData = async () => {
@@ -56,22 +69,75 @@ const BitcoinPriceTracker = () => {
     fetchCryptoData();
   }, [interval, crypto]);
 
+  const handleSearch = () => {
+    const normalizedSearchTerm = searchTerm.toLowerCase();
+    const matchedCrypto = cryptoList.find(
+      crypto => crypto.name.toLowerCase() === normalizedSearchTerm || crypto.symbol.toLowerCase() === normalizedSearchTerm
+    );
+
+    if (matchedCrypto) {
+      setCrypto(matchedCrypto.id);
+      setShowWarning(false);
+    } else {
+      const closestMatch = cryptoList.find(
+        crypto => crypto.name.toLowerCase().includes(normalizedSearchTerm) || crypto.symbol.toLowerCase().includes(normalizedSearchTerm)
+      );
+      if (closestMatch) {
+        setCrypto(closestMatch.id);
+      } else {
+        setShowWarning(true);
+        setTimeout(() => setShowWarning(false), 5000);
+      }
+    }
+  };
+
+  const filteredCryptoList = cryptoList.filter(
+    crypto => 
+      crypto.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      crypto.symbol.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="container text-center my-5">
-      <div className="btn-group mt-4" role="group">
-        {['bitcoin', 'ethereum', 'dogecoin', 'litecoin'].map(key => (
-          <button 
-            key={key} 
-            onClick={() => setCrypto(key)} 
-            type="button"
-            className={`btn btn-rounded crypto-btn ${crypto === key ? 'active' : ''}`}
-          >
-            <img src={{ bitcoin: bitcoinIcon, ethereum: ethereumIcon, dogecoin: dogecoinIcon, litecoin: litecoinIcon }[key]} alt={`${key} icon`} width="20" height="20" className="me-2" />
-            {key.toUpperCase()}
-          </button>
-        ))}
+      <div className="d-flex flex-column align-items-center">
+        <div className="d-flex align-items-center justify-content-center w-100">
+          <LivePrice crypto={crypto} />
+          <div className="dropdown-wrapper ml-3">
+            <div className="input-group mb-2">
+              <input
+                type="text"
+                className="form-control search-input"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{ color: 'white' }}
+              />
+              <button className="btn btn-dark search-btn" onClick={handleSearch}>
+                <FaSearch />
+              </button>
+            </div>
+            {showWarning && <div className="alert alert-warning small-alert">Cryptocurrency not found</div>}
+            <div className="position-relative w-100">
+              <select 
+                value={crypto} 
+                onChange={(e) => setCrypto(e.target.value)} 
+                className="form-select"
+                style={{ width: '100%' }}
+              >
+                {filteredCryptoList.length === 0 && (
+                  <option disabled>No cryptocurrencies found</option>
+                )}
+                {filteredCryptoList.map(crypto => (
+                  <option key={crypto.id} value={crypto.id}>
+                    {crypto.name} ({crypto.symbol.toUpperCase()})
+                  </option>
+                ))}
+              </select>
+              <FaCaretDown className="dropdown-icon position-absolute top-50 end-0 translate-middle-y" />
+            </div>
+          </div>
+        </div>
       </div>
-      <LivePrice crypto={crypto} />
       {loading ? <Loading /> : <CryptoChart data={data} interval={interval} setInterval={setInterval} />}
     </div>
   );

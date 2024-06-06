@@ -34,11 +34,11 @@ main {
 }
 
 .btn-group .crypto-btn, .btn-group .btn-interval {
-  font-size: 0.8rem; /* Reduced font size */
+  font-size: 0.8rem;
   font-family: 'Montserrat', sans-serif;
   width: 26px;
   color: #ffffff;
-  padding: 10px 4%; /* Reduced padding */
+  padding: 10px 4%;
   background-color: #2d2f36;
   border: none;
   margin: 2px 0px;
@@ -47,19 +47,19 @@ main {
 }
 
 .btn-group .crypto-btn.active, .btn-group .btn-interval.active {
-  background-color: #ff5100; /* Changed to orange */
+  background-color: #ff5100;
   color: #ffffff;
 }
 
 .btn-group .crypto-btn:hover, .btn-group .btn-interval:hover {
-  background-color: #636262; /* Darker orange on hover */
+  background-color: #636262;
   color: #ffffff;
 }
 
 .chart-container {
   position: relative;
   width: 100%;
-  height: 600px; /* Increased height for better layout */
+  height: 600px;
   margin: 0 auto;
   background-color: #1e2025;
   padding: 20px;
@@ -74,7 +74,7 @@ main {
 
 .chart-wrapper {
   width: 100%;
-  height: calc(100% - 40px); /* Adjusted to fit the buttons and chart */
+  height: calc(100% - 40px);
 }
 
 .loading-container {
@@ -99,33 +99,123 @@ footer .text-muted {
   color: #b3b3b3 !important;
 }
 
+.dropdown-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dropdown-wrapper .form-select {
+  font-size: 0.8rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #ffffff;
+  background-color: #2d2f36;
+  border: none;
+  padding: 6px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+  appearance: none;
+}
+
+.dropdown-wrapper .form-select:focus {
+  background-color: #2d2f36;
+  color: #ffffff;
+}
+
+.dropdown-wrapper .input-group {
+  display: flex;
+  width: 100%;
+  max-width: 400px;
+}
+
+.dropdown-wrapper .input-group .form-control.search-input {
+  flex: 1;
+  font-size: 0.8rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #ffffff;
+  background-color: #2d2f36;
+  border: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.dropdown-wrapper .input-group .form-control.search-input::placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.dropdown-wrapper .input-group .btn-dark.search-btn {
+  flex: 0 0 auto;
+  font-size: 0.8rem;
+  font-family: 'Montserrat', sans-serif;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  background-color: #2d2f36;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.dropdown-icon {
+  pointer-events: none;
+  color: #ffffff;
+  margin-right: 10px;
+}
+
+.alert.small-alert {
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+.live-price-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  height: auto;
+  background-color: #1e2025;
+  padding: 2%;
+  font-size: 10px;
+  border-radius: 10%;
+}
+
 @media (max-width: 576px) {
   body {
     font-size: 12px;
   }
 
   .btn-group .crypto-btn, .btn-group .btn-interval {
-    font-size: 0.6rem; /* Reduced font size for smaller screens */
-    padding: 6px 2px; /* Reduced padding for smaller screens */
+    font-size: 0.6rem;
+    padding: 6px 2px;
   }
 }
 
-/* Add this to your CSS file */
-
-@keyframes priceChangeUp {
-  0% { transform: translateY(-10px); background-color: #39FF14; }
-  100% { transform: translateY(0); background-color: #1e2025; }
+/* Add to your existing CSS */
+.crypto-info-container {
+  background-color: #191a1b;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  color: #e0e0e0;
+  text-align: left;
 }
 
-@keyframes priceChangeDown {
-  0% { transform: translateY(10px); background-color: #FF0000; }
-  100% { transform: translateY(0); background-color: #1e2025; }
+.crypto-info-container h2 {
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 10px;
 }
 
-.price-change-up {
-  animation: priceChangeUp 1s ease;
+.crypto-info-container p {
+  font-family: 'Roboto', sans-serif;
+  margin: 5px 0;
 }
 
-.price-change-down {
-  animation: priceChangeDown 1s ease;
+.crypto-links a {
+  color: #ff5100;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+.crypto-links a:hover {
+  text-decoration: underline;
 }

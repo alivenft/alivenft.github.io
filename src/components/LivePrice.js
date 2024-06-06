@@ -42,25 +42,23 @@ const LivePrice = ({ crypto }) => {
   }, [crypto, price]);
 
   return (
-    <div className="container mt-4">
-      <div className="row justify-content-center">
-        <div className="col-md-5 d-flex justify-content-center align-items-center">
-          <div
-            className={`info-container text-center p-4 m-1 ${priceClass}`}
-            style={{ color, width: '100%', borderRadius: '10px', backgroundColor: '#1e2025' }}
-          >
-            <h2 className="mb-1">{crypto.toUpperCase()}</h2>
-            <p className="display-6">${price !== null ? price.toFixed(2) : 'Loading...'}</p>
-            {priceChangePercentage !== null && (
-              <p className="mb-2">
-                {priceChangePercentage > 0 ? '▲' : '▼'} ({priceChangePercentage.toFixed(2)}%)
-              </p>
-            )}
-          </div>
-        </div>
-      </div>
+    <div className="live-price-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color }}>
+      <h2 className="crypto-name" style={{ fontSize: '1.4rem', margin: '0 auto' }}>
+        {crypto.toUpperCase()}
+      </h2>
+      <p className={`price ${priceClass}`} style={{ alignItems: 'center', fontSize: '1.3rem', margin: '0 10px' }}>
+        ${price !== null ? price.toFixed(2) : 'Loading...'}
+      </p>
+      {priceChangePercentage !== null && (
+        <p className="price-change" style={{ alignItems: 'center', fontSize: '0.7rem', margin: '0' }}>
+          {priceChangePercentage > 0 ? '▲' : '▼'} ({priceChangePercentage.toFixed(2)}%)
+        </p>
+      )}
     </div>
   );
+  
+  
 };
 
 export default LivePrice;
+
