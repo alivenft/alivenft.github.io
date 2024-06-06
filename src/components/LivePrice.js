@@ -47,7 +47,7 @@ const LivePrice = ({ crypto }) => {
         {crypto.toUpperCase()}
       </h2>
       <p className={`price ${priceClass}`} style={{ alignItems: 'center', fontSize: '1.3rem', margin: '0 10px' }}>
-        ${price !== null ? price.toFixed(2) : 'Loading...'}
+        ${price !== null ? price.toFixed(5) : 'Loading...'} {/* Adjusted to show 5 decimal places */}
       </p>
       {priceChangePercentage !== null && (
         <p className="price-change" style={{ alignItems: 'center', fontSize: '0.7rem', margin: '0' }}>
@@ -56,9 +56,6 @@ const LivePrice = ({ crypto }) => {
       )}
     </div>
   );
-  
-  
 };
 
 export default LivePrice;
-

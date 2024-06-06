@@ -62,6 +62,9 @@ const CryptoChart = ({ data, interval, setInterval }) => {
       y: {
         ticks: {
           color: '#e0e0e0', // Light grey color
+          callback: function(value) {
+            return parseFloat(value).toFixed(5); // Adjust this to the number of decimal places needed
+          },
         },
         grid: {
           color: 'rgba(224, 224, 224, 0.2)', // Light grey color
@@ -82,7 +85,7 @@ const CryptoChart = ({ data, interval, setInterval }) => {
         footerColor: '#e0e0e0', // Light grey color
         callbacks: {
           label: function (context) {
-            return `Price: $${context.raw.toFixed(2)}`;
+            return `Price: $${context.raw.toFixed(5)}`; // Adjust this to the number of decimal places needed
           },
         },
       },

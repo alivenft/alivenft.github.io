@@ -3,6 +3,7 @@ import axios from 'axios';
 import CryptoChart from './CryptoChart';
 import LivePrice from './LivePrice';
 import Loading from './Loading';
+import CurrencyConverter from './CurrencyConverter';
 import { FaSearch, FaCaretDown } from 'react-icons/fa';
 
 const intervals = {
@@ -138,6 +139,7 @@ const BitcoinPriceTracker = () => {
           </div>
         </div>
       </div>
+      <CurrencyConverter crypto={crypto} /> {/* Include the new component */}
       {loading ? <Loading /> : <CryptoChart data={data} interval={interval} setInterval={setInterval} />}
     </div>
   );
