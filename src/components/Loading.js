@@ -1,3 +1,4 @@
+// Loading.js
 import React from 'react';
 import { ClipLoader } from 'react-spinners';
 

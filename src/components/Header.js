@@ -1,3 +1,4 @@
+// Header.js
 import React from 'react';
 import btcLogo from './btc-logo.png';
 import bitcointalkLogo from './bitcointalk.png';

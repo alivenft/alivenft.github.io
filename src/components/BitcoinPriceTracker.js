@@ -99,48 +99,51 @@ const BitcoinPriceTracker = () => {
   );
 
   return (
-    <div className="container text-center my-5">
-      <div className="d-flex flex-column align-items-center">
-        <div className="d-flex align-items-center justify-content-center w-100">
-          <LivePrice crypto={crypto} />
-          <div className="dropdown-wrapper ml-3">
-            <div className="input-group mb-2">
-              <input
-                type="text"
-                className="form-control search-input"
-                placeholder="Search..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                style={{ color: 'white' }}
-              />
-              <button className="btn btn-dark search-btn" onClick={handleSearch}>
-                <FaSearch />
-              </button>
-            </div>
-            {showWarning && <div className="alert alert-warning small-alert">Cryptocurrency not found</div>}
-            <div className="position-relative w-100">
-              <select 
-                value={crypto} 
-                onChange={(e) => setCrypto(e.target.value)} 
-                className="form-select"
-                style={{ width: '100%' }}
-              >
-                {filteredCryptoList.length === 0 && (
-                  <option disabled>No cryptocurrencies found</option>
-                )}
-                {filteredCryptoList.map(crypto => (
-                  <option key={crypto.id} value={crypto.id}>
-                    {crypto.name} ({crypto.symbol.toUpperCase()})
-                  </option>
-                ))}
-              </select>
-              <FaCaretDown className="dropdown-icon position-absolute top-50 end-0 translate-middle-y" />
+    <div className="outer-container">
+
+      <div className="main-container text-center my-5">
+        <div className="d-flex flex-column align-items-center">
+          <div className="d-flex align-items-center justify-content-center w-100">
+            <LivePrice crypto={crypto} />
+            <div className="dropdown-wrapper ml-3">
+              <div className="input-group mb-2">
+                <input
+                  type="text"
+                  className="form-control search-input"
+                  placeholder="Search..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  style={{ color: 'white' }}
+                />
+                <button className="btn btn-dark search-btn" onClick={handleSearch}>
+                  <FaSearch />
+                </button>
+              </div>
+              {showWarning && <div className="alert alert-warning small-alert">Cryptocurrency not found</div>}
+              <div className="position-relative w-100">
+                <select 
+                  value={crypto} 
+                  onChange={(e) => setCrypto(e.target.value)} 
+                  className="form-select"
+                  style={{ width: '100%' }}
+                >
+                  {filteredCryptoList.length === 0 && (
+                    <option disabled>No cryptocurrencies found</option>
+                  )}
+                  {filteredCryptoList.map(crypto => (
+                    <option key={crypto.id} value={crypto.id}>
+                      {crypto.name} ({crypto.symbol.toUpperCase()})
+                    </option>
+                  ))}
+                </select>
+                <FaCaretDown className="dropdown-icon position-absolute top-50 end-0 translate-middle-y" />
+              </div>
             </div>
           </div>
         </div>
+        <CurrencyConverter crypto={crypto} />
+        {loading ? <Loading /> : <CryptoChart data={data} interval={interval} setInterval={setInterval} />}
       </div>
-      <CurrencyConverter crypto={crypto} /> {/* Include the new component */}
-      {loading ? <Loading /> : <CryptoChart data={data} interval={interval} setInterval={setInterval} />}
     </div>
   );
 };

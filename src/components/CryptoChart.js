@@ -1,3 +1,4 @@
+// CryptoChart.js
 import React, { useEffect, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
@@ -19,8 +20,8 @@ const CryptoChart = ({ data, interval, setInterval }) => {
       const chart = chartRef.current;
       const ctx = chart.ctx;
       const gradient = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
-      gradient.addColorStop(0, 'rgba(255, 140, 0, 0.15)'); // Light orange
-      gradient.addColorStop(1, 'rgba(255, 140, 0, 0.05)'); // More transparent orange
+      gradient.addColorStop(0, 'rgba(255, 140, 0, 0.25)');
+      gradient.addColorStop(1, 'rgba(255, 140, 0, 0)');
 
       chart.data.datasets[0].backgroundColor = gradient;
       chart.update();
@@ -34,15 +35,15 @@ const CryptoChart = ({ data, interval, setInterval }) => {
         label: 'Price (USD)',
         data: data.map(point => point[1]),
         fill: true,
-        backgroundColor: 'rgba(255, 140, 0, 0.15)', // This will be overridden by the gradient
-        borderColor: 'rgba(255, 140, 0, 1)', // Orange color
+        backgroundColor: 'rgba(255, 140, 0, 0.25)',
+        borderColor: 'rgba(255, 140, 0, 1)',
         pointBackgroundColor: '#fff',
-        pointBorderColor: 'rgba(255, 140, 0, 1)', // Orange color
-        pointHoverBackgroundColor: 'rgba(255, 140, 0, 1)', // Orange color
+        pointBorderColor: 'rgba(255, 140, 0, 1)',
+        pointHoverBackgroundColor: 'rgba(255, 140, 0, 1)',
         pointHoverBorderColor: '#fff',
         pointRadius: 3,
         pointHoverRadius: 5,
-        tension: 0.6,
+        tension: 0.4,
       },
     ],
   };
@@ -53,55 +54,56 @@ const CryptoChart = ({ data, interval, setInterval }) => {
     scales: {
       x: {
         ticks: {
-          color: '#e0e0e0', // Light grey color
+          color: '#e0e0e0',
         },
         grid: {
-          color: 'rgba(224, 224, 224, 0.2)', // Light grey color
+          color: 'rgba(224, 224, 224, 0.2)',
         },
       },
       y: {
         ticks: {
-          color: '#e0e0e0', // Light grey color
+          color: '#e0e0e0',
           callback: function(value) {
-            return parseFloat(value).toFixed(5); // Adjust this to the number of decimal places needed
+            return parseFloat(value).toFixed(2);
           },
         },
         grid: {
-          color: 'rgba(224, 224, 224, 0.2)', // Light grey color
+          color: 'rgba(224, 224, 224, 0.2)',
         },
       },
     },
     plugins: {
       legend: {
         labels: {
-          color: '#e0e0e0', // Light grey color
+          color: '#e0e0e0',
         },
       },
       tooltip: {
         enabled: true,
         backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        titleColor: '#e0e0e0', // Light grey color
-        bodyColor: '#e0e0e0', // Light grey color
-        footerColor: '#e0e0e0', // Light grey color
+        titleColor: '#e0e0e0',
+        bodyColor: '#e0e0e0',
+        footerColor: '#e0e0e0',
         callbacks: {
           label: function (context) {
-            return `Price: $${context.raw.toFixed(5)}`; // Adjust this to the number of decimal places needed
+            return `Price: $${context.raw.toFixed(2)}`;
           },
         },
       },
       subtitle: {
         display: true,
-        color: '#e0e0e0', // Light grey color
+        text: 'Crypto Price over Time',
+        color: '#e0e0e0',
         font: {
           size: 12,
         },
         padding: {
-          bottom: 1,
+          bottom: 10,
         },
       },
     },
     animation: {
-      duration: 1300,
+      duration: 1000,
       easing: 'easeInOutQuad',
     },
   };

@@ -1,3 +1,4 @@
+/* index.css */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
 
@@ -23,8 +24,49 @@ h1 {
   font-family: 'Orbitron', sans-serif;
 }
 
-main {
-  padding-bottom: 50px;
+.banner {
+  background-color: #1e2025;
+  color: #e0e0e0;
+  text-align: center;
+  padding: 50px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.banner h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.banner p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.start-btn {
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #ffffff;
+  background-color: #ff5100;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+.start-btn:hover {
+  background-color: #ff7600;
+  transform: scale(1.05);
+}
+
+.main-container {
+  background-color: #1e2025;
+  height: auto;
+  width: 100%;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .btn-group {
@@ -38,10 +80,10 @@ main {
   font-family: 'Montserrat', sans-serif;
   width: 26px;
   color: #ffffff;
-  padding: 10px 4%;
+  padding: 7px 1%;
   background-color: #2d2f36;
   border: none;
-  margin: 2px 0px;
+  margin: 0px 12px;
   border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -52,7 +94,7 @@ main {
 }
 
 .btn-group .crypto-btn:hover, .btn-group .btn-interval:hover {
-  background-color: #636262;
+  background-color: #4b4b4b;
   color: #ffffff;
 }
 
@@ -74,20 +116,14 @@ main {
 
 .chart-wrapper {
   width: 100%;
-  height: calc(100% - 40px);
+  height: calc(100% - 25px);
 }
 
 .loading-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-}
-
-.info-container {
-  background-color: #2d2f36;
-  border-radius: 10px;
-  padding: 20px;
+  height: 500%;
 }
 
 footer {
@@ -171,12 +207,7 @@ footer .text-muted {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: auto;
-  height: auto;
-  background-color: #1e2025;
-  padding: 2%;
-  font-size: 10px;
-  border-radius: 10%;
+  padding: 15px;
 }
 
 @media (max-width: 576px) {
@@ -190,21 +221,20 @@ footer .text-muted {
   }
 }
 
-/* Add to your existing CSS */
 .crypto-info-container {
   background-color: #191a1b00;
   padding: 20px;
   border-radius: 10px;
   margin-top: 20px;
   color: #e0e0e0;
-  text-align: center; /* Center the text */
+  text-align: center;
 }
 
 .converter-wrapper .input-group {
   display: flex;
   width: 100%;
   max-width: 300px;
-  margin: auto; /* Center the input groups */
+  margin: auto;
 }
 
 .converter-wrapper .input-group .form-control {
@@ -217,7 +247,7 @@ footer .text-muted {
   border-radius: 5px;
 }
 
-.converter-wrapper ::placeholder{
+.converter-wrapper .input-group .form-control::placeholder {
   color: white;
   opacity: 0.3;
   font-size: 0.8rem;
@@ -241,4 +271,142 @@ footer .text-muted {
 
 .crypto-links a:hover {
   text-decoration: underline;
+}
+
+/* Animations */
+.price-change-up {
+  animation: price-up 1s ease-in-out;
+}
+
+.price-change-down {
+  animation: price-down 1s ease-in-out;
+}
+
+@keyframes price-up {
+  0% { color: #ffffff; }
+  50% { color: #39FF14; }
+  100% { color: #ffffff; }
+}
+
+@keyframes price-down {
+  0% { color: #ffffff; }
+  50% { color: #FF0000; }
+  100% { color: #ffffff; }
+}
+
+.start-btn:hover {
+  background-color: #ff7600;
+  transform: scale(1.05);
+}
+
+main {
+  padding-bottom: 50px;
+}
+
+header.navbar {
+  background: #1e2025;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header.navbar a.navbar-brand {
+  font-family: 'Poppins', sans-serif;
+}
+
+header.navbar a.nav-link {
+  color: #e0e0e0;
+  font-family: 'Roboto', sans-serif;
+}
+
+header.navbar a.nav-link:hover {
+  color: #ff5100;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%288%2C 8%2C 8%2C 0.5%29' stroke-width='2' linecap='round' linejoin='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* index.css */
+.hero-section {
+  color: #fff;
+  padding: 60px 0;
+  border-radius: 12px;
+}
+
+.hero-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.hero-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.start-tracking-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  padding: 10px 20px;
+  background-color: #ff5100;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
+  outline: none; /* Remove blue outline */
+}
+
+.start-tracking-btn:hover {
+  transform: scale(1.05);
+}
+
+.start-tracking-btn:active,
+.start-tracking-btn:focus {
+  box-shadow: none; /* Remove any focus outline or shadow */
+  background-color: rgb(255, 0, 0);
+}
+
+.hero-section .hero-image {
+  max-width: 60%;
+  display: block;
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+.hero-text-container {
+  text-align: left;
+  padding-left: 30px; /* Adjust this value to bring text closer to the image */
+}
+
+@media (min-width: 992px) {
+  .hero-text-container {
+    padding-left: 15px; /* Reduce padding for desktop screens to bring text closer to the image */
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .start-tracking-btn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+
+  .hero-section .hero-image {
+    max-width: 80%; /* Adjusted size for smaller screens */
+  }
+
+  .hero-text-container {
+    text-align: center; /* Center text and button on small screens */
+    padding-left: 0; /* Remove left padding for small screens */
+    margin-top: 22px; /* Add more distance between image and text+button on small screens */
+  }
+
+  .hero-section .hero-image {
+    margin-bottom: 50px; /* Add more distance between image and text+button on small screens */
+  }
 }
