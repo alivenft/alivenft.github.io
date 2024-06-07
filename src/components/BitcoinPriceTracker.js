@@ -25,11 +25,18 @@ const BitcoinPriceTracker = () => {
     const fetchCryptoList = async () => {
       try {
         const response = await axios.get('https://api.coincap.io/v2/assets');
-        const enrichedCryptoList = response.data.data.map((crypto) => ({
-          ...crypto,
-          changePercent24Hr: parseFloat(crypto.changePercent24Hr),
-          icon: `https://assets.coincap.io/assets/icons/${crypto.symbol.toLowerCase()}@2x.png`,
-        }));
+        const enrichedCryptoList = await Promise.all(
+          response.data.data.map(async (crypto) => {
+            const sparklineResponse = await axios.get(`https://api.coincap.io/v2/assets/${crypto.id}/history?interval=h1`);
+            const sparkline = sparklineResponse.data.data.map(point => parseFloat(point.priceUsd));
+            return {
+              ...crypto,
+              changePercent24Hr: parseFloat(crypto.changePercent24Hr),
+              icon: `https://assets.coincap.io/assets/icons/${crypto.symbol.toLowerCase()}@2x.png`,
+              sparkline,
+            };
+          })
+        );
         setCryptoList(enrichedCryptoList);
       } catch (error) {
         console.error('Error fetching crypto list:', error);
@@ -90,13 +97,15 @@ const BitcoinPriceTracker = () => {
   return (
     <div className="outer-container">
       <div className="main-container text-center my-5">
-        <CurrencyConverter crypto={crypto} />
-        {loading ? (
-          <Loading />
-        ) : (
-          <CryptoChart data={data} interval={interval} setInterval={setInterval} />
-        )}
         <CoinTable cryptoList={cryptoList} setCrypto={setCrypto} />
+        <div id="crypto-details">
+          <CurrencyConverter crypto={crypto} />
+          {loading ? (
+            <Loading />
+          ) : (
+            <CryptoChart data={data} interval={interval} setInterval={setInterval} />
+          )}
+        </div>
       </div>
     </div>
   );

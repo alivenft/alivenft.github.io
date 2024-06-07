@@ -1,71 +1,96 @@
 .coin-table-container {
-    margin-top: 20px;
-    background-color: #1e2025;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    overflow-x: auto;
-  }
-  
-  .coin-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .coin-table th, .coin-table td {
-    text-align: center;
-    padding: 8px;
-    color: #e0e0e0;
-  }
-  
-  .coin-table th {
-    background-color: #2d2f36;
-  }
-  
-  .coin-table tr:nth-child(even) {
-    background-color: #2d2f36;
-  }
-  
-  .coin-table tr:hover {
-    background-color: #333540;
-    cursor: pointer;
-  }
-  
-  .coin-table td {
-    border-bottom: 1px solid #444;
-  }
-  
-  .positive-change {
-    animation: positiveChange 0.5s;
-    background-color: #37ff142c; /* Green color for positive changes */
-  }
-  
-  .negative-change {
-    animation: negativeChange 0.5s;
-    background-color: #ff000025; /* Red color for negative changes */
-  }
-  
-  .pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .page-button {
-    background-color: #2d2f36;
-    color: #e0e0e0;
-    border: none;
-    padding: 5px 10px;
-    margin: 0 5px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .page-button.active {
-    background-color: #ff5100;
-  }
-  
-  .page-button:hover {
-    background-color: #444;
-  }
-  
+  width: 100%;
+  overflow-x: auto;
+}
+
+.coin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.coin-table th, .coin-table td {
+  text-align: start;
+  padding: 16px;
+  color: #e0e0e0;
+}
+
+.coin-table th {
+  background-color: #000000;
+}
+
+.coin-table tr:nth-child(even) {
+  background-color: #2d2f36;
+}
+
+.coin-table tr:hover {
+  background-color: #333540;
+  cursor: pointer;
+}
+
+.coin-table td {
+  border-bottom: 1px solid #444;
+}
+
+.coin-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.coin-icon {
+  width: 30px;
+}
+
+.positive-change {
+  animation: positiveChange 0.5s;
+  background-color: #37ff142c;
+}
+
+.negative-change {
+  animation: negativeChange 0.5s;
+  background-color: #ff000025;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.page-button {
+  background-color: #2d2f36;
+  color: #e0e0e0;
+  border: none;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.page-button.active {
+  background-color: #ff5100;
+}
+
+.page-button:hover {
+  background-color: #444;
+}
+
+.buy-button {
+  border: 1px solid #ff5100;
+  background: none;
+  color: #ff5100;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.buy-button:hover {
+  background-color: #ff5100;
+  color: #fff;
+}
+
+.loading-indicator {
+  text-align: center;
+  padding: 20px;
+}
