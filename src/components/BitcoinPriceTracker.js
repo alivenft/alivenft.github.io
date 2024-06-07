@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CryptoChart from './CryptoChart';
-import Loading from './Loading';
 import CurrencyConverter from './CurrencyConverter';
 import CoinTable from './CoinTable';
 
@@ -18,7 +17,6 @@ const BitcoinPriceTracker = () => {
   const [data, setData] = useState([]);
   const [interval, setInterval] = useState('1h');
   const [crypto, setCrypto] = useState('bitcoin');
-  const [loading, setLoading] = useState(true);
   const [cryptoList, setCryptoList] = useState([]);
 
   useEffect(() => {
@@ -66,7 +64,6 @@ const BitcoinPriceTracker = () => {
     };
 
     const fetchCryptoData = async () => {
-      setLoading(true);
       try {
         const startDate = calculateStartDate(interval);
         const response = await axios.get(
@@ -86,8 +83,6 @@ const BitcoinPriceTracker = () => {
         setData(formattedData);
       } catch (error) {
         console.error(`Error fetching data for ${crypto}:`, error);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -100,11 +95,7 @@ const BitcoinPriceTracker = () => {
         <CoinTable cryptoList={cryptoList} setCrypto={setCrypto} />
         <div id="crypto-details">
           <CurrencyConverter crypto={crypto} />
-          {loading ? (
-            <Loading />
-          ) : (
-            <CryptoChart data={data} interval={interval} setInterval={setInterval} />
-          )}
+          <CryptoChart data={data} interval={interval} setInterval={setInterval} />
         </div>
       </div>
     </div>

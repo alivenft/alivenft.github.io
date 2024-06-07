@@ -1,4 +1,3 @@
-// CryptoChart.js
 import React, { useEffect, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
